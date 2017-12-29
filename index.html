@@ -63,15 +63,15 @@
 									<li><a href="#newMultiSig" data-toggle="tab">MultiSig Address</a></li>
 									<li><a href="#newTimeLocked" data-toggle="tab">Time Locked Address</a></li>
 									<li><a href="#newHDaddress" data-toggle="tab">HD Address</a></li>
-<!--                                    <li class="divider"></li>-->
-<!--                                    <li><a href="#newTransaction" data-toggle="tab">Transaction</a></li>-->
+                  <li class="divider"></li>
+                  <li><a href="#newTransaction" data-toggle="tab">Transaction</a></li>
 								</ul>
 							</li>
 							<li><a href="#verify" data-toggle="tab"><span class="glyphicon glyphicon-ok"></span> Verify</a></li>
 							<li><a href="#sign" data-toggle="tab"><span class="glyphicon glyphicon-pencil"></span> Sign</a></li>
-<!--                            <li><a href="#broadcast" data-toggle="tab"><span class="glyphicon glyphicon-globe"></span> Broadcast</a></li>-->
-<!--                            <li><a href="#wallet" data-toggle="tab"><span class="glyphicon glyphicon-briefcase"></span> Wallet</a></li>-->
-<!--                            <li><a href="#about" data-toggle="tab"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>-->
+              <li><a href="#broadcast" data-toggle="tab"><span class="glyphicon glyphicon-globe"></span> Broadcast</a></li>
+              <li><a href="#wallet" data-toggle="tab"><span class="glyphicon glyphicon-briefcase"></span> Wallet</a></li>
+              <li><a href="#about" data-toggle="tab"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>
 
 							<li class="hidden"><a href="#settings" data-toggle="tab"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
 						</ul>
@@ -110,17 +110,17 @@
 								<p>We offer a fully transparent <a href="#newMultiSig">multisig</a> solution which works seamlessly offline and with other bitcoin clients.</p>
 							</div>
 
-<!--                            <div class="col-md-4">-->
-<!--                                <h3><span class="glyphicon glyphicon-bitcoin"></span> Raw Transactions</h3>-->
-<!--                                <p><a href="#newTransaction">Create</a>, <a href="#verify">verify</a>, <a href="#sign">sign</a> and <a href="#broadcast">broadcast</a> custom raw transactions online with advanced features and minimal effort!</p>-->
-<!--                            </div>-->
+              <div class="col-md-4">
+                  <h3><span class="glyphicon glyphicon-bitcoin"></span> Raw Transactions</h3>
+                  <p><a href="#newTransaction">Create</a>, <a href="#verify">verify</a>, <a href="#sign">sign</a> and <a href="#broadcast">broadcast</a> custom raw transactions online with advanced features and minimal effort!</p>
+              </div>
 						</div>
 
 						<div class="row">
-<!--                            <div class="col-md-4">-->
-<!--                                <h3><span class="glyphicon glyphicon-piggy-bank"></span> Wallet</h3>-->
-<!--                                <p>Quick access to an <a href="#wallet">online wallet</a> where only you have access to your own private keys!</p>-->
-<!--                            </div>-->
+                <div class="col-md-4">
+                    <h3><span class="glyphicon glyphicon-piggy-bank"></span> Wallet</h3>
+                    <p>Quick access to an <a href="#wallet">online wallet</a> where only you have access to your own private keys!</p>
+                </div>
 
 							<div class="col-md-4">
 								<h3><span class="glyphicon glyphicon-globe"></span> Addresses</h3>
@@ -190,7 +190,7 @@
 													<li role="presentation" class="active"><a href="javascript:;" id="walletBalance">0.00 BTC</a></li>
 													<li role="presentation"><a href="javascript:;" id="walletShowSpend">Spend</a></li>
 													<li role="presentation"><a id="walletHistory" href="javascript:;" target="_blank">History</a></li>
-													<li role="presentation"><a href="https://localbitcoins.com/?ch=173j" target="_blank">Buy</a></li>
+													<li role="presentation"><a href="https://yobit.net/en/trade/BTG/USD" target="_blank">Buy</a></li>
 													<li role="presentation"><a href="javascript:;" id="walletShowKeys">Keys</a></li>
 												</ul>
 
@@ -244,7 +244,7 @@
 															<input type="text" class="form-control" value="0.0004" id="txFee">
 														</div>
 														<div class="col-xs-5">
-															<label><abbr title="the amount to donate to coinb.in">Donation</abbr></label>
+															<label><abbr title="the amount to donate to Bitcoin Gold coinb.in Community">Donation</abbr></label>
 															<input type="text" class="form-control" value="0.003" id="developerDonation">
 														</div>
 													</div>
@@ -375,9 +375,9 @@
 								<p>Enter the public keys of all the participants, to create a <a href="https://en.bitcoin.it/wiki/Address#Multi-signature_addresses" target="_blank">multi signature address</a>. Maximum of 15 allowed. Compressed and uncompressed public keys are accepted.</p>
 							</div>
 
-<!--                            <div class="col-md-3">-->
-<!--                                <p class="alert alert-info"><span class="glyphicon glyphicon-info-sign"></span> <a href="javascript:;" data-toggle="modal" data-target="#modalMediator"><abbr>Need a Mediator?</abbr></a></p>-->
-<!--                            </div>-->
+              <div class="col-md-3">
+                  <p class="alert alert-info"><span class="glyphicon glyphicon-info-sign"></span> <a href="javascript:;" data-toggle="modal" data-target="#modalMediator"><abbr>Need a Mediator?</abbr></a></p>
+              </div>
 
 							<div class="col-md-1">
 							</div>
@@ -964,8 +964,8 @@
 					</div>
 
 					<div class="tab-pane tab-content" id="sign">
-<!--                        <h2>Sign Transaction <small>once a transaction has been verified</small></h2>-->
-<!--                        <p>Once you have <a href="#verify">verified</a> a transaction you can sign and then <a href="#broadcast">broadcast</a> it into the network.</p>-->
+               <h2>Sign Transaction <small>once a transaction has been verified</small></h2>
+               <p>Once you have <a href="#verify">verified</a> a transaction you can sign and then <a href="#broadcast">broadcast</a> it into the network.</p>
 
 						<div class="row">
 							<div class="col-md-12">
@@ -998,12 +998,12 @@
 									<label for="sighashType">Sig Hash Type</label>
 
 									<select id="sighashType" class="form-control">
-										<option value="1" rel="SIGHASH_ALL: Signs all the inputs and outputs, protecting everything against modification.">ALL (default)</option>
-										<option value="2" rel="SIGHASH_NONE: Signs all of the inputs but none of the outputs, allowing anyone to change where the satoshis are going unless other signatures using other signature hash flags protect the outputs.">NONE</option>
-										<option value="3" rel="SIGHASH_SINGLE: The only output signed is the one corresponding to this input, ensuring nobody can change your part of the transaction but allowing other signers to change their part of the transaction.">SINGLE</option>
-										<option value="129" rel="SIGHASH_ALL|SIGHASH_ANYONECANPAY: Signs all of the outputs but only this one input, it allows anyone to add or remove other inputs, so anyone can contribute additional satoshis but they cannot change how many satoshis are sent nor where they go.">ALL|ANYONECANPAY</option>
-										<option value="130" rel="SIGHASH_NONE|SIGHASH_ANYONECANPAY: Signs only this one input and allows anyone to add or remove other inputs or outputs, so anyone who gets a copy of this input can spend it however they'd like.">NONE|ANYONECANPAY</option>
-										<option value="131" rel="SIGHASH_SINGLE|SIGHASH_ANYONECANPAY: Signs this one input and its corresponding output. Allows anyone to add or remove other inputs.">SINGLE|ANYONECANPAY</option>
+										<option value="65" rel="SIGHASH_ALL: Signs all the inputs and outputs, protecting everything against modification.">ALL (default)</option>
+										<option value="66" rel="SIGHASH_NONE: Signs all of the inputs but none of the outputs, allowing anyone to change where the satoshis are going unless other signatures using other signature hash flags protect the outputs.">NONE</option>
+										<option value="67" rel="SIGHASH_SINGLE: The only output signed is the one corresponding to this input, ensuring nobody can change your part of the transaction but allowing other signers to change their part of the transaction.">SINGLE</option>
+										<option value="193" rel="SIGHASH_ALL|SIGHASH_ANYONECANPAY: Signs all of the outputs but only this one input, it allows anyone to add or remove other inputs, so anyone can contribute additional satoshis but they cannot change how many satoshis are sent nor where they go.">ALL|ANYONECANPAY</option>
+										<option value="194" rel="SIGHASH_NONE|SIGHASH_ANYONECANPAY: Signs only this one input and allows anyone to add or remove other inputs or outputs, so anyone who gets a copy of this input can spend it however they'd like.">NONE|ANYONECANPAY</option>
+										<option value="195" rel="SIGHASH_SINGLE|SIGHASH_ANYONECANPAY: Signs this one input and its corresponding output. Allows anyone to add or remove other inputs.">SINGLE|ANYONECANPAY</option>
 									</select>
 								</div>
 							</div>
@@ -1059,7 +1059,7 @@
 						<p>TOR <a href="http://4zpinp6gdkjfplhk.onion">4zpinp6gdkjfplhk.onion</a></p>
 						<h3>What is Bitcoin?</h3>
 						<p>Bitcoin is a type of digital currency in which encryption techniques are used to regulate the generation of units of currency and verify the transfer of funds, operating independently of a central bank. See <a href="http://www.weusecoins.com/" target="_blank">weusecoins.com</a> for more information.</p>
-						<p>If you are looking to buy some Bitcoin try <a href="https://localbitcoins.com/?ch=173j" target="_blank">LocalBitcoins.com</a>.</p>
+						<p>If you are looking to buy some Bitcoin Gold try <a href="https://yobit.net/en/trade/BTG/USD" target="_blank">yobit.net</a>.</p>
 						<h3>Information</h3>
 						<p>Coinb.in is a free and open source project released under the MIT license, originally by <a href="https://bitcointalk.org/index.php?action=profile;u=34834" target="_blank">OutCast3k</a> in 2013. Discussion of the project can be found at <a href="https://bitcointalk.org/index.php?topic=390046" target="_blank">bitcointalk.org</a> during its early testing stages when its primary focus was to develop a proof of concept multisig solution in javascript.</p>
 						<p>Coinb.in is run and funded by the generosity of others in terms of <a href="https://github.com/OutCast3k/coinbin/graphs/contributors" target="_blank">development</a> and hosting.</p>
@@ -1080,11 +1080,13 @@
 								<b>Network</b>: <br>
 								<p class="text-muted">Select which network you'd like to use for key pair generation.</p>
 								<select class="form-control" id="coinjs_coin">
+                  <option value="bitcoin_gold_mainnet" rel="0x26;0x80;0x17;0x488b21e;0x488ade4;btgexplorer.com;btgexplorer.com">Bitcoin Gold (mainnet)</option>
 									<option value="bitcoin_mainnet" rel="0x00;0x80;0x05;0x488b21e;0x488ade4;coinb.in;coinb.in">Bitcoin (mainnet)</option>
 									<option value="dogecoin_mainnet" rel="0x1e;0x9e;0x16;0x0827421e;0x089944e4;chain.so_dogecoin;chain.so_dogecoin">Dogecoin (mainnet)</option>
 									<option value="carboncoin_mainnet" rel="0x2f;0xaf;0x05;0x488b21e;0x488ade4;cryptoid.info_carboncoin;cryptoid.info_carboncoin">Carboncoin (mainnet)</option>
 									<option value="shadowcash_mainnet" rel="0x3f;0xbf;0x7d;0xee80286a;0xee8031e8;false;false">ShadowCash (mainnet)</option>
-									<option value="bitcoin_testnet" rel="0x6f;0xef;0xc4;0x043587cf;0x04358394;false;false">Bitcoin (testnet)</option>
+									<option value="bitcoin_testnet" rel="0x6f;0xef;0xc4;0x043587cf;0x04358394;false;false">Bitcoin Gold (testnet)</option>
+                  <option value="bitcoin_testnet" rel="0x6f;0xef;0xc4;0x043587cf;0x04358394;false;false">Bitcoin (testnet)</option>
 
 									<option value="custom" rel="0x00;0x80;0x05;0x488b21e;0x488ade4;false;false">Custom</option>
 								</select>
@@ -1132,19 +1134,20 @@
 
 						<hr>
 
-<!--                        <div class="row">-->
-<!--                            <div class="col-md-12">-->
-<!--                                <b>Broadcast</b>: <br>-->
-<!--                                <p class="text-muted">Select the network you wish to broadcast the transaction via</p>-->
-<!--                                <select class="form-control" id="coinjs_broadcast">-->
-<!--                                    <option value="coinb.in">coinb.in (Bitcoin mainnet)</option>-->
-<!--                                    <option value="chain.so_bitcoinmainnet"> Chain.so (Bitcoin mainnet)</option>-->
-<!--                                    <option value="blockcypher_bitcoinmainnet"> Blockcypher.com (Bitcoin mainnet)</option>-->
-<!--                                    <option value="chain.so_dogecoin"> Chain.so (Dogecoin)</option>-->
-<!--                                    <option value="cryptoid.info_carboncoin"> Cryptoid.info (Carboncoin)</option>-->
-<!--                                </select>-->
-<!--                            </div>-->
-<!--                        </div>-->
+            <div class="row">
+                <div class="col-md-12">
+                    <b>Broadcast</b>: <br>
+                    <p class="text-muted">Select the network you wish to broadcast the transaction via</p>
+                    <select class="form-control" id="coinjs_broadcast">
+                        <option value="btgexplorer.com">btgexplorer.com (Bitcoin Gold mainnet)</option>
+                        <option value="coinb.in">coinb.in (Bitcoin mainnet)</option>
+                        <option value="chain.so_bitcoinmainnet"> Chain.so (Bitcoin mainnet)</option>
+                        <option value="blockcypher_bitcoinmainnet"> Blockcypher.com (Bitcoin mainnet)</option>
+                        <option value="chain.so_dogecoin"> Chain.so (Dogecoin)</option>
+                        <option value="cryptoid.info_carboncoin"> Cryptoid.info (Carboncoin)</option>
+                    </select>
+                </div>
+            </div>
 
 						<hr>
 
@@ -1153,6 +1156,7 @@
 								<b>Unspent outputs</b>: <br>
 								<p class="text-muted">Select the network you wish to retreive your unspent inputs from</p>
 								<select class="form-control" id="coinjs_utxo">
+                  <option value="coinb.in">btgexplorer.com (Bitcoin Gold mainnet)</option>
 									<option value="coinb.in">coinb.in (Bitcoin mainnet)</option>
 									<option value="chain.so_litecoin"> Chain.so (Litecoin)</option>
 									<option value="chain.so_dogecoin"> Chain.so (Dogecoin)</option>

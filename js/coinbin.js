@@ -2,9 +2,9 @@ $(document).ready(function() {
 
 	/* open wallet code */
 
-	var explorer_tx = "https://coinb.in/tx/"
-	var explorer_addr = "https://coinb.in/addr/"
-	var explorer_block = "https://coinb.in/block/"
+	var explorer_tx = "https://btgexplorer.com/tx/"
+	var explorer_addr = "https://btgexplorer.com/address/"
+	var explorer_block = "https://btgexplorer.com/block/"
 
 	var wallet_timer = false;
 
@@ -116,7 +116,7 @@ $(document).ready(function() {
 		var thisbtn = $(this);
 		var tx = coinjs.transaction();
 		var txfee = $("#txFee");
-		var devaddr = coinjs.developer;
+		var devaddr = coinjs.txndeveloper;
 		var devamount = $("#developerDonation");
 
 		if((devamount.val()*1)>0){
@@ -162,8 +162,8 @@ $(document).ready(function() {
 
 				// and finally broadcast!
 				tx2.broadcast(function(data){
-					if($(data).find("result").text()=="1"){
-						$("#walletSendConfirmStatus").removeClass('hidden').addClass('alert-success').html('txid: <a href="https://coinb.in/tx/'+$(data).find("txid").text()+'" target="_blank">'+$(data).find("txid").text()+'</a>');
+					if($(data).find("txid")){
+						$("#walletSendConfirmStatus").removeClass('hidden').addClass('alert-success').html('txid: <a href="https://btgexplorer.com/tx/'+$(data).find("txid").text()+'" target="_blank">'+$(data).find("txid").text()+'</a>');
 					} else {
 						$("#walletSendConfirmStatus").removeClass('hidden').addClass('alert-danger').html(unescape($(data).find("response").text()).replace(/\+/g,' '));
 						$("#walletSendFailTransaction").removeClass('hidden');
@@ -663,7 +663,7 @@ $(document).ready(function() {
 		var exists = false;
 
 		$.each($("#recipients .address"), function(i,o){
-			if($(o).val() == coinjs.developer){
+			if($(o).val() == coinjs.txndeveloper){
 				exists = true;
 				$(o).fadeOut().fadeIn();
 				return true;
@@ -675,7 +675,7 @@ $(document).ready(function() {
 				$("#recipients .addressAddTo:first").click();
 			};
 
-			$("#recipients .recipient:last .address:last").val(coinjs.developer).fadeOut().fadeIn();
+			$("#recipients .recipient:last .address:last").val(coinjs.txndeveloper).fadeOut().fadeIn();
 
 			return true;
 		}
@@ -778,6 +778,8 @@ $(document).ready(function() {
 			listUnspentChainso_Dogecoin(redeem);
 		} else if(host=='cryptoid.info_carboncoin'){
 			listUnspentCryptoidinfo_Carboncoin(redeem);
+		} else if(host-='coinb.in'){
+			listUnspentBitcoin(redeem);
 		} else {
 			listUnspentDefault(redeem);
 		}
@@ -889,6 +891,55 @@ $(document).ready(function() {
 
 	/* default function to retreive unspent outputs*/	
 	function listUnspentDefault(redeem){
+		$.ajax ({
+			type: "GET",
+			url: "https://btgexplorer.com/api/addr/"+redeem.addr+"/utxo",
+			dataType: "json",
+			error: function(data) {
+				$("#redeemFromStatus").removeClass('hidden').html('<span class="glyphicon glyphicon-exclamation-sign"></span> Unexpected error, unable to retrieve unspent outputs!');
+			},
+			success: function(data) {
+				if((data)){
+					$("#redeemFromAddress").removeClass('hidden').html(
+						'<span class="glyphicon glyphicon-info-sign"></span> Retrieved unspent inputs from address <a href="'+explorer_addr+redeem.addr+'" target="_blank">'+redeem.addr+'</a>');
+					for(var i in data){
+						var o = data[i];
+						var tx = ((""+o.txid).match(/.{1,2}/g).reverse()).join("")+'';
+						if(tx.match(/^[a-f0-9]+$/)){
+							var n = o.vout;
+							var script = (redeem.isMultisig==true) ? $("#redeemFrom").val() : o.scriptPubKey;
+							var amount = o.satoshis;
+              var amount_str = amount.toString();
+              var amount_length = amount_str.length;
+              if(amount < 100000000)
+              {
+                for(var i = 0; i < 8-amount_length; ++i){
+                  amount_str = "0"+amount_str;
+                }
+                amount_str = "0."+amount_str
+              }
+              else
+              {
+                amount_str = amount_str.substring(0, amount_length - 8) + "." + amount_str.substring(amount_length - 7, 8);
+              }
+              
+							addOutput(tx, n, script, amount_str);
+						}
+					}
+				} else {
+					$("#redeemFromStatus").removeClass('hidden').html('<span class="glyphicon glyphicon-exclamation-sign"></span> Unexpected error, unable to retrieve unspent outputs.');
+				}
+			},
+			complete: function(data, status) {
+				$("#redeemFromBtn").html("Load").attr('disabled',false);
+				totalInputAmount();
+			}
+		});
+	}
+
+
+	/* retrieve unspent data from coinb.in for Bitcoin */	
+	function listUnspentBitcoin(redeem){
 		var tx = coinjs.transaction();
 		tx.listUnspent(redeem.addr, function(data){
 			if(redeem.addr) {
@@ -910,7 +961,6 @@ $(document).ready(function() {
 			mediatorPayment(redeem);
 		});
 	}
-
 
 	/* retrieve unspent data from chainso for litecoin */
 	function listUnspentChainso_Litecoin(redeem){
@@ -1070,8 +1120,36 @@ $(document).ready(function() {
 		rawSubmitDefault(this);
 	});
 
-	// broadcast transaction vai coinbin (default)
-	function rawSubmitDefault(btn){ 
+  // broadcast transaction vai btgexplorer (Default)
+  function rawSubmitDefault(btn){ 
+		var thisbtn = btn;		
+		$(thisbtn).val('Please wait, loading...').attr('disabled',true);
+		$.ajax ({
+			type: "POST",
+			url: "https://btgexplorer.com/api/tx/send",
+			data: {'rawtx':$("#rawTransaction").val()},
+			dataType: "xml",
+			error: function(data) {
+				$("#rawTransactionStatus").addClass('alert-danger').removeClass('alert-success').removeClass("hidden").html(" There was an error submitting your request, please try again").prepend('<span class="glyphicon glyphicon-exclamation-sign"></span>');
+			},
+      success: function(data) {
+				$("#rawTransactionStatus").html(unescape($(data).find("response").text()).replace(/\+/g,' ')).removeClass('hidden');
+				if($(data).find("txid")){
+					$("#rawTransactionStatus").addClass('alert-success').removeClass('alert-danger');
+					$("#rawTransactionStatus").html('txid: '+$(data).find("txid").text());
+				} else {
+					$("#rawTransactionStatus").addClass('alert-danger').removeClass('alert-success').prepend('<span class="glyphicon glyphicon-exclamation-sign"></span> ');
+				}
+			},
+			complete: function(data, status) {
+				$("#rawTransactionStatus").fadeOut().fadeIn();
+				$(thisbtn).val('Submit').attr('disabled',false);				
+			}
+		});
+	}
+  
+	// broadcast transaction vai coinbin
+	function rawSubmitcoinbin_BitcoinMainnet(btn){ 
 		var thisbtn = btn;		
 		$(thisbtn).val('Please wait, loading...').attr('disabled',true);
 		$.ajax ({
@@ -1587,7 +1665,7 @@ $(document).ready(function() {
 
 	$('a[data-toggle="tab"]').on('click', function(e) {
 		e.preventDefault();
-		if(e.target){
+		if(e.target && $(e.target).attr('href')){
 			history.pushState(null, null, '#'+$(e.target).attr('href').substr(1));
 		}
 	});
@@ -1704,7 +1782,11 @@ $(document).ready(function() {
 			$("#rawSubmitBtn").click(function(){
 				rawSubmitcryptoid_Carboncoin(this);
 			});
-		} else {
+		} else if(host=="coinb.in") {
+			$("#rawSubmitBtn").click(function(){
+				rawSubmitcoinbin_BitcoinMainnet(this); // revert to default
+			});
+    } else {
 			$("#rawSubmitBtn").click(function(){
 				rawSubmitDefault(this); // revert to default
 			});
